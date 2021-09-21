@@ -1,0 +1,47 @@
+<ul>
+  <li class="root">
+    <i [ngClass]="data?.icon"></i>{{data?.name}}
+    <p-button label="+ File"
+              class="p-button-sm"
+              (click)="createFile()"></p-button>
+    <p-button label="+ Folder"
+              class="p-button-sm"
+              (click)="createFolder()"></p-button>
+    <p-button label="Remove Selected"
+              class="p-button-sm"
+              (click)="data?.removeSelected()"></p-button>
+    <p-button label="Buy"
+              class="p-button-sm"
+              (click)="buy()"></p-button>
+
+    <span *ngIf="price"
+          class="price">{{price | currency:'USD':'symbol':'1.2-2'}}</span>
+  </li>
+
+  <ng-container
+    *ngIf="data?.children?.length; then withChildren;">
+  </ng-container>
+
+  <ng-template #withChildren>
+    <ul class="list">
+      <li *ngFor="let child of data?.children">
+        <ng-container
+          *ngIf="child?.data; then file; else folder;">
+        </ng-container>
+
+        <ng-template #file>
+          <app-file [data]="child"
+                    (select$)="select($event)"
+                    (save$)="save($event)"></app-file>
+        </ng-template>
+
+        <ng-template #folder>
+          <app-folder [data]="child"
+                      (select$)="select($event)"
+                      (save$)="save($event)"></app-folder>
+        </ng-template>
+      </li>
+    </ul>
+  </ng-template>
+
+</ul>

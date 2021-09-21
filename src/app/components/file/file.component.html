@@ -1,0 +1,32 @@
+<i [ngClass]="data?.icon"></i>
+<p-checkbox
+  #checkbox
+  (onChange)="selectItem()"
+  [binary]="true"
+></p-checkbox>
+
+<ng-container
+  *ngIf="!isOnEdit; then noEdit; else onEdit;">
+</ng-container>
+
+<ng-template #noEdit>
+  <span class="name"
+        (click)="viewFile(data)">{{data?.name}}</span>
+
+  <p-button label="Edit"
+            class="p-button-sm"
+            (click)="data?.edit()"></p-button>
+</ng-template>
+
+<ng-template #onEdit>
+  <input type="text"
+         #input
+         pInputText
+         (keyup)="keyupCheck($event)"
+         [value]="data?.name"
+  />
+
+  <p-button label="Save"
+            class="p-button-sm"
+            (click)="data?.save()"></p-button>
+</ng-template>

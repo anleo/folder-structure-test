@@ -1,0 +1,38 @@
+:host {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 100vH;
+  overflow: hidden;
+
+  &.view-file {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+::ng-deep .p-button {
+  font-size: .7em;
+  padding: .4em .7em;
+}
+
+::ng-deep .p-checkbox {
+  margin-right: .5em;
+}
+
+::ng-deep .pi {
+  &.pi-file,
+  &.pi-folder {
+    font-size: 1.4em;
+  }
+}
+
+::ng-deep .p-checkbox {
+  $side: 1.5em;
+  width: $side;
+  height: $side;
+  align-items: center;
+
+  .p-checkbox-box {
+    width: 1em;
+    height: 1em;
+  }
+}

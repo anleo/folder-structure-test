@@ -1,0 +1,43 @@
+:host {
+  height: 3em;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  padding: 0 1em;
+  border-radius: .5em;
+
+  p-button {
+    opacity: .2;
+  }
+
+  &:hover {
+    background-color: rgba(#ccc, .2);
+    box-shadow: 0 1px 1px lightblue;
+
+    p-button {
+      opacity: 1;
+    }
+  }
+}
+
+.name {
+  cursor: pointer;
+  color: black;
+  transition: color .3s ease;
+
+  &:hover {
+    color: lightblue;
+  }
+}
+
+.pi {
+  margin-right: .5em;
+
+  &.pi-file {
+    color: lightblue;
+  }
+}
+
+p-button {
+  margin-left: .5em;
+}

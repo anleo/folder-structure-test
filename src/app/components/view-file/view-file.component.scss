@@ -1,0 +1,28 @@
+:host {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 5em 1fr;
+  align-items: start;
+  justify-content: center;
+  background-color: rgba(#ccc, .5);
+  padding: 0 1em 1em;
+  border-left: .4em solid lightblue;
+}
+
+h1 {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+
+  span > b {
+    color: lightblue;
+  }
+
+  .pi {
+    cursor: pointer;
+
+    &:hover {
+      color: red;
+    }
+  }
+}

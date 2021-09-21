@@ -1,0 +1,65 @@
+<div class="wrapper">
+  <i [ngClass]="data?.icon"></i>
+  <p-checkbox
+    #checkbox
+    (onChange)="selectItem()"
+    [binary]="true"
+  ></p-checkbox>
+
+  <ng-container
+    *ngIf="!isOnEdit; then noEdit; else onEdit;">
+  </ng-container>
+
+  <ng-template #noEdit>
+    <span class="name">{{data?.name}}</span>
+
+    <p-button label="Edit"
+              class="p-button-sm"
+              (click)="data?.edit()"></p-button>
+    <p-button label="+ File"
+              class="p-button-sm"
+              (click)="createFile()"></p-button>
+    <p-button label="+ Folder"
+              class="p-button-sm"
+              (click)="createFolder()"></p-button>
+  </ng-template>
+
+  <ng-template #onEdit>
+    <input type="text"
+           #input
+           pInputText
+           (keyup)="keyupCheck($event)"
+           [value]="data?.name"
+    />
+
+    <p-button label="Save"
+              class="p-button-sm"
+              (click)="data?.save()"></p-button>
+  </ng-template>
+</div>
+
+<ng-container
+  *ngIf="data?.children?.length; then withChildren;">
+</ng-container>
+
+<ng-template #withChildren>
+  <ul>
+    <li *ngFor="let child of data?.children">
+      <ng-container
+        *ngIf="child?.data; then file; else folder;">
+      </ng-container>
+
+      <ng-template #file>
+        <app-file [data]="child"
+                  (select$)="select($event)"
+                  (save$)="save()"></app-file>
+      </ng-template>
+
+      <ng-template #folder>
+        <app-folder [data]="child"
+                    (select$)="select($event)"
+                    (save$)="save()"></app-folder>
+      </ng-template>
+    </li>
+  </ul>
+</ng-template>
