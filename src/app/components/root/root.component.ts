@@ -66,6 +66,15 @@ export class RootComponent implements OnInit, AfterContentInit, OnDestroy {
   }
 
   select(ev?: any): void {
+    this.countPrice();
+  }
+
+  remove(): void {
+    this.data?.removeSelected();
+    this.countPrice();
+  }
+
+  countPrice(): void {
     this.price = (this.data?.getSelected(this.data?.children, [], true) || [])
       .reduce((acc, cur: FolderItemClass) => acc + (cur?.price || 0), 0);
   }
